@@ -11,6 +11,10 @@ class BasePage:
         self.browser.get(self.url)
 
     def is_element_present(self, how, what):
+        """
+        :param how:  - how to search (css, id, xpath)
+        :param what: - what to look for (selector string)
+        """
         try:
             self.browser.find_element(how, what)
         except NoSuchElementException:

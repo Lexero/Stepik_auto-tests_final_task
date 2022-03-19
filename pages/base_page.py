@@ -1,11 +1,12 @@
 from selenium.common.exceptions import NoSuchElementException, TimeoutException, NoAlertPresentException
 import math
 from selenium.webdriver.support import expected_conditions as EC
+
 from selenium.webdriver.support.wait import WebDriverWait
 
 
 class BasePage:
-    def __init__(self, browser, url, timeout=10):   # Конструктор — метод, который вызывается, когда мы создаем объект
+    def __init__(self, browser, url, timeout=10):  # Конструктор — метод, который вызывается, когда мы создаем объект
         self.browser = browser
         self.url = url
         self.browser.implicitly_wait(timeout)
@@ -13,7 +14,7 @@ class BasePage:
     def open(self):
         self.browser.get(self.url)
 
-    def is_element_present(self, how, what):    # Метод для проверки элемента на странице
+    def is_element_present(self, how, what):  # Метод для проверки элемента на странице
         """
         :param how:  - how to search (css, id, xpath)
         :param what: - what to look for (selector string)
@@ -46,8 +47,7 @@ class BasePage:
 
         return False
 
-    def is_disappeared(self, how, what, timeout=4):
-        # будет ждать до тех пор, пока элемент не исчезнет
+    def is_disappeared(self, how, what, timeout=4):  # Метод, который будет ждать 4 секунды, пока элемент не исчезнет
         """
         WebDriverWait(driver, timeout, poll_frequency=0.5, ignored_exceptions=None)
 

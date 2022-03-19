@@ -38,3 +38,7 @@ class ProductPage(BasePage):
         product_price_in_basket = self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE_IN_BASKET)
         print(f'Price in store: {product_prise_in_store.text}, Price in basket: {product_price_in_basket.text}')
         assert product_prise_in_store.text == product_price_in_basket.text, "Prices don't match"
+
+    def should_not_be_success_message(self):   # Проверка отсутствия сообщения, что товар добавлен в корзину
+        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE_ADD_PRODUCT), \
+            "Success message is presented, but should not be"

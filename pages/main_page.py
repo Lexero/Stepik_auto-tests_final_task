@@ -10,3 +10,4 @@ class MainPage(BasePage):
     """
     def __init__(self, *args, **kwargs):    # Конструкцию можно заменить одним pass
         super(MainPage, self).__init__(*args, **kwargs)
+    # pass

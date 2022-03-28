@@ -23,6 +23,7 @@ def test_guest_can_add_product_to_basket(browser, link):  # Тест добав�
 
 @pytest.mark.xfail(reason="Success message is shown.")
 def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
+    # Тест на отсутствие сообщения о добавлении товара в корзину после добавления товара в корзину (падающий)
     link = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209"
     page = ProductPage(browser, link)
     page.open()
@@ -30,7 +31,7 @@ def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
     page.should_not_be_success_message()
 
 
-def test_guest_cant_see_success_message(browser):
+def test_guest_cant_see_success_message(browser):  # Тест на отсутствие сообщения о добавлении товара в корзину
     link = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209"
     page = ProductPage(browser, link)
     page.open()
@@ -39,6 +40,7 @@ def test_guest_cant_see_success_message(browser):
 
 @pytest.mark.xfail(reason="Success message not close.")
 def test_message_disappeared_after_adding_product_to_basket(browser):
+    # Тестируем, что сообщение о добавлении в корзину пропадает
     link = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209"
     page = ProductPage(browser, link)
     page.open()
@@ -46,21 +48,21 @@ def test_message_disappeared_after_adding_product_to_basket(browser):
     page.should_be_disappear_success_message()
 
 
-def test_guest_should_see_login_link_on_product_page(browser):
+def test_guest_should_see_login_link_on_product_page(browser):  # Тест на видимость кнопки логина и регистрации
     link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
     page = ProductPage(browser, link)
     page.open()
     page.should_be_login_link()
 
 
-def test_guest_can_go_to_login_page_from_product_page(browser):
+def test_guest_can_go_to_login_page_from_product_page(browser):  # Тест на возможность перехода на страницу логина
     link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
     page = ProductPage(browser, link)
     page.open()
     page.go_to_login_page()
 
 
-def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
+def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):  # Тест перехода в корзину, корзина пустая
     link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-shellcoders-handbook_209/"
     page = BasketPage(browser, link)
     page.open()

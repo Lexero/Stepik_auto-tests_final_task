@@ -21,3 +21,10 @@ class ProductPageLocators:
     PRODUCT_PRICE_IN_BASKET = (By.CSS_SELECTOR, "#messages div:nth-child(3) strong")
     SUCCESS_MESSAGE_ADD_PRODUCT = (By.CSS_SELECTOR, "#messages div:first-child")
     SUCCESS_MESSAGE_BASKET_PRICE = (By.CSS_SELECTOR, "#messages div:nth-child(3) .alertinner > p")
+
+
+class BasketPageLocators:
+    PRODUCT_NAME_IN_BASKET = (By.CSS_SELECTOR, "#basket_formset > div > div > div.col-sm-4 > h3 > a")
+    PRODUCT_PRICE_IN_BASKET = (By.CSS_SELECTOR, "#basket_formset > div > div > div:nth-child(5) > p")
+    BASKET_EMPTY_MESSAGE = (By.CSS_SELECTOR, "#content_inner p")
+    PRESENCE_PRODUCT_IN_BASKET = (By.CSS_SELECTOR, "#basket_formset")

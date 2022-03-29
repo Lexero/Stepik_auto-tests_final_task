@@ -1,6 +1,9 @@
 import pytest
 from pages.product_page import ProductPage
 from pages.basket_page import BasketPage
+from pages.login_page import LoginPage
+import time
+import faker
 
 URL_PRODUCT_NewYear = ["http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/?promo=newYear",
                        "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"]
@@ -69,3 +72,27 @@ def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):  # 
     page.go_to_basket_page()
     page.guest_can_see_message_basket_is_empty()
     page.guest_cant_see_product_in_basket()
+
+
+@pytest.mark.register_add_to_basket
+class TestUserAddToBasketFromProductPage:
+    @pytest.fixture(scope="function", autouse=True)
+    def setup(self, browser):
+        link = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209"
+        email = faker.Faker().email()
+        password = "user_pass_" + str(time.time())
+        self.new_user = LoginPage(browser, link)
+        self.new_user.open()
+        self.new_user.register_new_user(email, password)
+
+    def test_user_cant_see_success_message(self, browser):
+        link = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209"
+        page = ProductPage(browser, link)
+        page.open()
+        page.should_not_be_success_message()
+
+    def test_user_can_add_product_to_basket(self, browser):
+        link = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209"
+        page = ProductPage(browser, link)
+        page.open()
+        page.guest_can_add_product_to_basket()

@@ -70,11 +70,14 @@ class BasePage:
         # символ * указывает на то, что мы передали именно пару, и этот кортеж нужно распаковать
 
     def solve_quiz_and_get_code(self):  # Метод для решения задачки при добавлении товара в корзину
-        alert = self.browser.switch_to.alert
-        x = alert.text.split(" ")[2]
-        answer = str(math.log(abs((12 * math.sin(float(x))))))
-        alert.send_keys(answer)
-        alert.accept()
+        try:
+            alert = self.browser.switch_to.alert
+            x = alert.text.split(" ")[2]
+            answer = str(math.log(abs((12 * math.sin(float(x))))))
+            alert.send_keys(answer)
+            alert.accept()
+        except NoAlertPresentException:
+            print("No first alert presented")
         try:
             alert = self.browser.switch_to.alert
             alert_text = alert.text
@@ -82,3 +85,7 @@ class BasePage:
             alert.accept()
         except NoAlertPresentException:
             print("No second alert presented")
+
+    def should_be_authorized_user(self):  # Метод для проверки того, что пользователь залогинен
+        assert self.is_element_present(*BasePageLocators.USER_ICON), "User icon is not presented," \
+                                                                     " probably unauthorised user"

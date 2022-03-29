@@ -8,4 +8,4 @@ pip install -r requirements.txt
 pytest -v --tb=line --language=en -m need_review test_product_page.py
 
 #### Expected result:
-12 passed, 7 deselected, 1 xfailed
+4 passed, 11 deselected

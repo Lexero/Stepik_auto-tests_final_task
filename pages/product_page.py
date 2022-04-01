@@ -8,7 +8,7 @@ class ProductPage(BasePage):
         add_to_basket_button = self.browser.find_element(*ProductPageLocators.ADD_TO_BASKET_BUTTON)
         add_to_basket_button.click()
 
-    def guest_can_add_product_to_basket(self):  # Функция для запуска проверок при добавлении товара в корзину
+    def can_add_product_to_basket(self):  # Функция для запуска проверок при добавлении товара в корзину
         self.add_product_to_basket()
         try:
             self.solve_quiz_and_get_code()

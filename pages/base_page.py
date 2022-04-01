@@ -1,8 +1,8 @@
 from selenium.common.exceptions import NoSuchElementException, TimeoutException, NoAlertPresentException
-import math
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 from .locators import BasePageLocators
+import math
 
 
 class BasePage:
@@ -86,6 +86,7 @@ class BasePage:
         except NoAlertPresentException:
             print("No second alert presented")
 
-    def should_be_authorized_user(self):  # Метод для проверки того, что пользователь залогинен
+    def should_be_authorized_user(self):  # Метод для проверки того, что пользователь залогине
+        self.browser.implicitly_wait(10)
         assert self.is_element_present(*BasePageLocators.USER_ICON), "User icon is not presented," \
                                                                      " probably unauthorised user"

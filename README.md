@@ -5,7 +5,7 @@
 pip install -r requirements.txt
 
 ### Command for run test: 
-pytest -v --tb=line --language=en -m need_review test_product_page.py
+pytest -v --tb=line --language=en -m need_review
 
 #### Expected result:
-4 passed, 11 deselected
+12 passed, 11 deselected, 1 xfailed
